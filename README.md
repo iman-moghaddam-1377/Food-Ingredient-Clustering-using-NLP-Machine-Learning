@@ -1,7 +1,3 @@
-Here’s a **fully styled GitHub README in English** based on the assignment in your image 👇
-
----
-
 # 🍽️ Food Ingredient Clustering using NLP & Machine Learning
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
