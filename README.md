@@ -1,7 +1,8 @@
-# 🍽️ Food Ingredient Clustering using NLP & Machine Learning
+# 🍽️ Food Ingredient Clustering using NLP, PySpark & Machine Learning
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
-![NLP](https://img.shields.io/badge/NLP-Word2Vec-orange.svg)
+![PySpark](https://img.shields.io/badge/PySpark-BigData-orange.svg)
+![NLP](https://img.shields.io/badge/NLP-Word2Vec-yellow.svg)
 ![ML](https://img.shields.io/badge/MachineLearning-KMeans-red.svg)
 ![Status](https://img.shields.io/badge/Status-Completed-success.svg)
 
@@ -9,61 +10,62 @@
 
 ## 📌 Project Overview
 
-This project focuses on **clustering foods based on their ingredients** using Natural Language Processing (NLP) and Machine Learning techniques.
+This project focuses on **clustering foods based on their ingredients** using **PySpark, NLP, and Machine Learning**.
 
-The main idea is to extract ingredients from recipes, represent them numerically, and group similar foods together based on their ingredient composition.
+The pipeline processes large-scale recipe data using **PySpark** for distributed computation, then applies feature extraction and clustering techniques to group similar foods.
+
+---
+
+## ⚡ Tech Stack
+
+* **PySpark (Apache Spark)** for distributed data processing
+* **Python**
+* **NLP techniques** (tokenization, normalization)
+* **Word2Vec (Spark MLlib)**
+* **K-Means Clustering (Spark MLlib)**
 
 ---
 
 ## 📊 Dataset
 
-* Input: Recipe dataset containing food instructions and ingredients
-* Goal: Extract and analyze ingredient lists
-* Output: Clustered groups of similar foods
+* Recipe dataset containing ingredients and cooking instructions
+* Processed in a distributed manner using **PySpark DataFrames**
 
 ---
 
-## 🧹 Preprocessing
+## 🧹 Preprocessing (PySpark)
 
-Each recipe is processed using standard NLP techniques:
+All preprocessing is implemented using **PySpark transformations**:
 
 * Convert text to lowercase
 * Remove punctuation
 * Remove stopwords
-* Normalize words (e.g., removing plural forms like *s/es*)
-* Tokenize ingredients
+* Normalize tokens (e.g., plural → singular)
+* Tokenize ingredient lists
 
 ---
 
 ## 🔢 Feature Engineering
 
-### 1. One-Hot Encoding
+### 1. One-Hot Encoding (Spark)
 
 * Extract all unique ingredients
-* Create a **one-hot vector** for each ingredient
-* Represent each recipe as a combination of ingredient vectors
-
-Example:
-
-```
-       A  B  C  D
-Rec1   1  0  0  1
-Rec2   0  0  1  0
-```
+* Generate **sparse vectors** using PySpark
+* Represent each recipe as a feature vector
 
 ---
 
-### 2. Word2Vec Embedding
+### 2. Word2Vec (PySpark MLlib)
 
-* Train or use pretrained Word2Vec embeddings
-* Generate vector representation for each ingredient
-* Compute **average embedding per recipe**
+* Train Word2Vec model using Spark
+* Generate vector embeddings for ingredients
+* Compute **average vector per recipe**
 
 ---
 
-## 🤖 Clustering
+## 🤖 Clustering (PySpark MLlib)
 
-Clustering is performed using **K-Means**:
+Clustering is performed using **K-Means in PySpark**:
 
 ### 🔹 Approach 1:
 
@@ -75,24 +77,22 @@ Clustering is performed using **K-Means**:
 
 ### 📉 Optimal Clusters
 
-* Use the **Elbow Method** to determine the optimal number of clusters
+* Determined using the **Elbow Method**
 
 ---
 
 ## 📊 Results
 
-### ✅ Evaluation Strategy
+### ✅ Evaluation
 
-* Compare clusters qualitatively
-* Identify differences in ingredient distributions
-* Analyze top ingredients per cluster
+* Cluster comparison based on ingredient similarity
+* Identification of dominant ingredients per cluster
+* Analysis of cluster coherence
 
-### 🔍 Insights
+### 🔍 Key Findings
 
-* Similar cuisines/recipes tend to cluster together
-* Word2Vec-based clustering captures **semantic similarity** better
 * One-hot encoding captures **exact ingredient overlap**
-
-
+* Word2Vec captures **semantic similarity between ingredients**
+* PySpark enables efficient processing of large datasets
 
 
